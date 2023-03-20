@@ -1,0 +1,169 @@
+h2{
+  color: #668FBF;
+  font-size: 2.3rem;
+  /* font-family: 'Montserrat',sans-serif; */
+  font-weight: lighter;
+  padding: 10px;
+}
+.u1{
+  color: green;
+}
+.u2{
+  color: green;
+}
+.u3{
+  color: green;
+}
+
+.real-time-data{
+  flex: auto;
+  border: 1px;
+  margin: 20px;
+  padding: 10px;
+  border: 10px;
+  height: 300px;
+  width: 600px;
+  position: relative;
+}
+.real-time-data2{
+  flex: auto;
+  border: 1px;
+  margin: 20px;
+  padding: 10px;
+  border: 10px;
+  height: 300px;
+  width: 600px;
+  position: relative;
+}
+.real-time-data3{
+  flex: auto;
+  border: 1px;
+  margin: 20px;
+  padding: 10px;
+  border: 10px;
+  height: 300px;
+  width: 600px;
+  position: relative;
+}
+
+/* .div1{
+  flex: 1;
+  border: 1px;
+  margin: 20px;
+  padding: 10px;
+  border: 10px;
+  height: 400px;
+  width: 600px;
+  position: relative;
+}
+.div2{
+  flex: 1;
+  border: 1px;
+  margin: 20px;
+  padding: 10px;
+  border: 10px;
+  height: 300px;
+  width: 600px;
+  position: relative;
+}
+.div3{
+  flex: 1;
+  border: 1px;
+  margin: 20px;
+  padding: 10px;
+  border: 10px;
+  height: 300px;
+  width: 600px;
+  position: relative;
+} */
+
+
+.submit-form{
+  align-content: center;
+  text-align:center;
+  position: relative;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+}
+.fileinput{
+  align-content: center;
+  text-align:center;
+  position: relative;
+  padding-top: 200px;
+}
+.Choose-patient{
+  align-content: center;
+  text-align:center;
+  position: relative;
+  padding-top: 100px;
+}
+
+.graph1{
+  align-content: center;
+  text-align:center;
+  /* position: relative; */
+  padding-top: 100px;
+}
+.graph2{
+  align-content: center;
+  text-align:center;
+  /* position: relative; */
+  padding-top: 100px;
+}
+.graph3{
+  align-content: center;
+  text-align:center;
+  /* position: relative; */
+  padding-top: 100px;
+}
+
+table {
+  padding-top: 100px;
+  border-collapse: collapse;
+  border-radius: 5px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+th {
+  background: #009578;
+  color: #ffffff;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 10px 20px;
+}
+
+tr:nth-child(even) {
+  background: #eeeeee;
+}
+
+.tbl{
+  align-content: center;
+  text-align:center;
+  position: relative;
+  /* padding-top: 100px; */
+}
+.footer{
+  border-bottom: 0%;
+  position: relative;
+  width: 100%;
+}
+hr{
+  position: relative;
+          top: 20px;
+          border: none;
+          height: 5px;
+          background: black;
+          margin-bottom: 50px;
+}
+.btn{
+  position: relative;
+  margin-left: 92%;
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>IoT Patient Monitoring logs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="\styles\styles.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <!-- CSS only -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand">Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="http://localhost/html/index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/html/index.html">Reload site</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost/html/logs.html">Logs<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="submit-form">
+      <form action="http://localhost" method="post">
+        <div class="Choose-patient">
+        <h3>Records</h3>
+
+        <label for="Patient">Choose Patient:</label>
+
+        <select id="patient" name="patienttable">
+          <option value="1943514">Patient 1</option>
+          <option value="1943517">Patient 2</option>
+          <option value="1943526">Patient 3</option>
+        </select>
+        </div>
+        <div class="date">
+        <label for="dateInput1">Date from: </label>
+
+
+
+        <input id="dateInput1" type="date" name="from">
+        <label for="dateInput2">Date to: </label>
+        <input id="dateInput2" type="date" name="to">
+        <button type="submit">Submit</button>
+
+      </div>
+      </form>
+
+    </div>
+  <div class="tbl">
+
+    <input class="fileinput" type="file" id="csvFileInput" style="padding-bottom: 15px">
+        <table id="csvRoot"></table>
+
+      <script src="https://cdn.jsdelivr.net/npm/papaparse@5.2.0/papaparse.min.js"></script>
+
+  </div>
+
+    <script type="text/javascript">
+
+      // table element program
+      class TableCsv {
+        /**
+         * @param {HTMLTableElement} root The table element which will display the CSV data.
+         */
+        constructor(root) {
+          this.root = root;
+        }
+
+        /**
+         * Clears existing data in the table and replaces it with new data.
+         *
+         * @param {string[][]} data A 2D array of data to be used as the table body
+         * @param {string[]} headerColumns List of headings to be used
+         */
+         //["time", "id", "pulse", "spo2", "temperature"]
+        update(data, headerColumns = []) {
+          this.clear();
+          // this.setHeader(headerColumns);
+          this.setHeader(["Time", "entry_id", "Pulse", "SpO2", "Temperature"]);
+          this.setBody(data);
+        }
+
+        /**
+         * Clears all contents of the table (incl. the header).
+         */
+        clear() {
+          this.root.innerHTML = "";
+        }
+
+        /**
+         * Sets the table header.
+         *
+         * @param {string[]} headerColumns List of headings to be used
+         */
+        setHeader(headerColumns) {
+          this.root.insertAdjacentHTML(
+            "afterbegin",
+            `
+                  <thead>
+                      <tr>
+                          ${headerColumns.map((text) => `<th>${text}</th>`).join("")}
+                      </tr>
+                  </thead>
+              `
+          );
+        }
+
+        /**
+         * Sets the table body.
+         *
+         * @param {string[][]} data A 2D array of data to be used as the table body
+         */
+        setBody(data) {
+          const rowsHtml = data.map((row) => {
+            return `
+                      <tr>
+                          ${row.map((text) => `<td>${text}</td>`).join("")}
+                      </tr>
+                  `;
+          });
+
+          this.root.insertAdjacentHTML(
+            "beforeend",
+            `
+                  <tbody>
+                      ${rowsHtml.join("")}
+                  </tbody>
+              `
+          );
+        }
+      }
+
+      const tableRoot = document.querySelector("#csvRoot");
+      const csvFileInput = document.querySelector("#csvFileInput");
+      const tableCsv = new TableCsv(tableRoot);
+
+      csvFileInput.addEventListener("change", (e) => {
+        Papa.parse(csvFileInput.files[0], {
+          delimiter: ",",
+          skipEmptyLines: true,
+          complete: (results) => {
+            tableCsv.update(results.data.slice(1), results.data[0]);
+          }
+        });
+      });
+    // table element program end
+
+    </script>
+
+    <div class="footer">
+      <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+        </div>
+        <!-- Copyright -->
+      </footer>
+    </div>
+  </body>
+</html>
