@@ -55,14 +55,14 @@
 
         <!-- <h2>Patient Monitoring Website</h2> -->
         <h3>Patient 1</h3>
-        <h1> Pulse = <span class="u1 " id="updates"></span> Bpm </h1>
-        <h1> SpO2 = <span class="u2" id="updates2"></span> % </h1>
-        <h1> Temperature = <span class="u3" id="updates3"></span> °C </h1>
-        <h2> Patient condition : <span class="u4" id="updates4">normal</span></h2>
+        <h1 id="p1"> Pulse = <span class="u1 " id="updates"></span> Bpm </h1>
+        <h1 id="s1"> SpO2 = <span class="u2" id="updates2"></span> % </h1>
+        <h1 id="t1"> Temperature = <span class="u3" id="updates3"></span> °C </h1>
+        <h2 id="c1"> Patient condition : <span class="u4" id="updates4">normal</span></h2>
 
       </div>
 
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <button id="b1" onclick="myFunction2()" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         More+
     </button>
   <div class="collapse" id="collapseExample">
@@ -114,7 +114,7 @@
     <h2> Patient condition : <span class="u4" id="updates8">normal</span></h2>
 
   </div>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+  <button id="b2" onclick="myFunction3()" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
     More+
 </button>
 <div class="collapse" id="collapseExample2">
@@ -149,7 +149,7 @@
     <h2> Patient condition : <span class="u4" id="updates12">normal</span></h2>
 
   </div>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+  <button id="b3" onclick="myFunction4()" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
     More+
 </button>
 <div class="collapse" id="collapseExample3">
@@ -235,16 +235,20 @@
     if(my_second_val < 85){
       // document.getElementById('updates2').style.color = "red";
       document.getElementById('updates4').innerText = "Abnormal";
+      document.getElementById("updates2").style.color = "red";
     }
     else if (my_second_val > 85) {
       document.getElementById('updates4').innerText = "Normal";
+      document.getElementById("updates2").style.color = "green";
     }
     else if(my_first_val < 65 || my_first_val > 120){
       // document.getElementById('updates1').style.color = "red";
       document.getElementById('updates4').innerText = "Abnormal";
+      document.getElementById("updates").style.color = "red";
     }
     else if (my_first_val > 65 || my_first_val < 120) {
       document.getElementById('updates4').innerText = "Normal";
+      document.getElementById("updates").style.color = "green";
     }
     else if(my_third_val == -127){
       // document.getElementById('updates3').style.color = "red";
@@ -253,24 +257,30 @@
     else if(my_third_val < 30 || my_third_val > 38 ){
       // document.getElementById('updates3').style.color = "red";
       document.getElementById('updates4').innerText = "Abnormal";
+      document.getElementById("updates3").style.color = "red";
     }
     else if (my_third_val > 30 || my_third_val < 38 ) {
       document.getElementById('updates4').innerText = "Normal";
+      document.getElementById("updates3").style.color = "green";
     }
     //patient 2
      if(my_fifth_val < 85){
       // document.getElementById('updates2').style.color = "red";
       document.getElementById('updates8').innerText = "Abnormal";
+      document.getElementById("updates6").style.color = "red";
     }
     else if (my_fifth_val > 85) {
       document.getElementById('updates8').innerText = "Normal";
+      document.getElementById("updates6").style.color = "green";
     }
     else if(my_fourth_val < 65 || my_fourth_val > 120){
       // document.getElementById('updates1').style.color = "red";
       document.getElementById('updates8').innerText = "Abnormal";
+      document.getElementById("updates5").style.color = "red";
     }
     else if (my_fourth_val > 65 || my_fourth_val < 120) {
       document.getElementById('updates8').innerText = "Normal";
+      document.getElementById("updates5").style.color = "green";
     }
     else if(my_sixth_val == -127){
       // document.getElementById('updates3').style.color = "red";
@@ -279,24 +289,30 @@
     else if(my_sixth_val < 30 || my_sixth_val > 38 ){
       // document.getElementById('updates3').style.color = "red";
       document.getElementById('updates8').innerText = "Abnormal";
+      document.getElementById("updates7").style.color = "red";
     }
     else if (my_sixth_val > 30 || my_sixth_val < 38 ) {
       document.getElementById('updates8').innerText = "Normal";
+      document.getElementById("updates7").style.color = "green";
     }
     //patient 3
     if(my_eighth_val < 85){
       // document.getElementById('updates2').style.color = "red";
       document.getElementById('updates12').innerText = "Abnormal";
+      document.getElementById("updates10").style.color = "red";
     }
     else if (my_eighth_val > 85) {
       document.getElementById('updates12').innerText = "Normal";
+      document.getElementById("updates10").style.color = "green";
     }
     else if(my_seventh_val < 65 || my_seventh_val > 120){
       // document.getElementById('updates1').style.color = "red";
       document.getElementById('updates12').innerText = "Abnormal";
+      document.getElementById("updates9").style.color = "red";
     }
     else if (my_seventh_val > 65 || my_seventh_val < 120) {
       document.getElementById('updates12').innerText = "Normal";
+      document.getElementById("updates9").style.color = "green"
     }
     else if(my_nineth_val == -127){
       // document.getElementById('updates3').style.color = "red";
@@ -305,9 +321,11 @@
     else if(my_nineth_val < 30 || my_nineth_val > 38 ){
       // document.getElementById('updates3').style.color = "red";
       document.getElementById('updates12').innerText = "Abnormal";
+      document.getElementById("updates11").style.color = "red";
     }
     else if (my_nineth_val > 30 || my_nineth_val < 38 ) {
       document.getElementById('updates12').innerText = "Normal";
+      document.getElementById("updates11").style.color = "green"
     }
 
   }, false)
@@ -401,6 +419,31 @@
   });
 // table element program end
 
+
+function myFunction2() {
+  var x = document.getElementById("b1");
+  if (x.innerHTML === "Less-") {
+    x.innerHTML = "More+";
+  } else {
+    x.innerHTML = "Less-";
+  }
+}
+function myFunction3() {
+  var x = document.getElementById("b2");
+  if (x.innerHTML === "Less-") {
+    x.innerHTML = "More+";
+  } else {
+    x.innerHTML = "Less-";
+  }
+}
+function myFunction4() {
+  var x = document.getElementById("b3");
+  if (x.innerHTML === "Less-") {
+    x.innerHTML = "More+";
+  } else {
+    x.innerHTML = "Less-";
+  }
+}
 </script>
 
 </html>
