@@ -3,7 +3,8 @@ const https = require("https");
 const bodyParser = require("body-parser")
 const fs = require("fs")
 const app = express()
-const port = 80
+// const port = 80
+const port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -175,6 +176,6 @@ app.post("/", function(reqs, resp) {
 })
 
 
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/html/index.html`)
 })
